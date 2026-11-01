@@ -1,0 +1,10 @@
+{
+	"name": "link_ADLS",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://healthcarede.dfs.core.windows.net/"
+		}
+	}
+}
