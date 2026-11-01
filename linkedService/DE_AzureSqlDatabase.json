@@ -1,0 +1,23 @@
+{
+	"name": "DE_AzureSqlDatabase",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "healthcarede.database.windows.net",
+			"database": "healthcare",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "healthdeserver",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "link_keyvaultpostgr",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sqldbpw"
+			}
+		}
+	}
+}
