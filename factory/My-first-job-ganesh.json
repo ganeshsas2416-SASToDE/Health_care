@@ -1,0 +1,15 @@
+{
+	"name": "My-first-job-ganesh",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ad248854-291e-4be5-adf5-1858cf48fc71",
+		"tenantId": "43a95b67-ca93-426c-8a38-1ed77abf6c8d"
+	}
+}

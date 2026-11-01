@@ -1,0 +1,111 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Prodcuts",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/SAS_to_DE/product"
+				},
+				"linkedServiceName": {
+					"referenceName": "ganesh_ADF",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Dim_customers",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Prodcuts",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/SAS_to_DE/customer"
+				},
+				"linkedServiceName": {
+					"referenceName": "ganesh_ADF",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Sales",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Dim_customers",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/SAS_to_DE/sales"
+				},
+				"linkedServiceName": {
+					"referenceName": "ganesh_ADF",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Master",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Sales",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/SAS_to_DE/Master"
+				},
+				"linkedServiceName": {
+					"referenceName": "ganesh_ADF",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-10-28T10:20:59Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
