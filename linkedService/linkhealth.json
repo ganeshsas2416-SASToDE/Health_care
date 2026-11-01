@@ -1,0 +1,10 @@
+{
+	"name": "linkhealth",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://healthcarede.dfs.core.windows.net/"
+		}
+	}
+}
