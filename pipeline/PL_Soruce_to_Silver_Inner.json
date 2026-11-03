@@ -33,6 +33,8 @@
 			{
 				"name": "start time",
 				"type": "SetVariable",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"secureOutput": false,
@@ -50,6 +52,8 @@
 			{
 				"name": "soruce tables ingestion",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "read Table details",
