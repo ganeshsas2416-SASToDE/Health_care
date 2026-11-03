@@ -33,8 +33,6 @@
 			{
 				"name": "start time",
 				"type": "SetVariable",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"secureOutput": false,
@@ -52,8 +50,6 @@
 			{
 				"name": "soruce tables ingestion",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "read Table details",
@@ -80,7 +76,7 @@
 					"source": {
 						"type": "PostgreSqlV2Source",
 						"query": {
-							"value": "select * from PUBLIC.@{activity('read Table details').output.firstRow.soruce_table_name}",
+							"value": "select * from PUBLIC.@{activity('read Table details').output.firstRow.source_table_name}",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00"
