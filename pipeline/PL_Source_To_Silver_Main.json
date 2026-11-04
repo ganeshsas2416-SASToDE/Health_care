@@ -99,7 +99,7 @@
 									{
 										"type": "Query",
 										"text": {
-											"value": "INSERT into ctrl.audit_log (adf_run_id,table_id,stage,status,start_time)\nvalues('a1',@{item().table_id},'SOURCE_TO_SILVER','IN_PROGRESS',SYSUTCDATETIME())",
+											"value": "INSERT into ctrl.audit_log (adf_run_id,table_id,stage,status,start_time)\nvalues('@{pipeline().parameters.adf_run_id}',@{item().table_id},'SOURCE_TO_SILVER','IN_PROGRESS',SYSUTCDATETIME())",
 											"type": "Expression"
 										}
 									}
@@ -108,7 +108,7 @@
 							}
 						},
 						{
-							"name": "Insert inprogress status_copy1",
+							"name": "update failed status ",
 							"type": "Script",
 							"dependsOn": [
 								{
@@ -135,7 +135,7 @@
 									{
 										"type": "Query",
 										"text": {
-											"value": "INSERT into ctrl.audit_log (adf_run_id,table_id,stage,status,start_time)\nvalues('a1',@{item().table_id},'SOURCE_TO_SILVER','IN_PROGRESS',SYSUTCDATETIME())",
+											"value": "update ctrl.audit_log \nset STATUS='FAILED' ,end_time=SYSUTCDATETIME()\nwhere table_id=@{item().table_id} and adf_run_id='@{pipeline().parameters.adf_run_id}'",
 											"type": "Expression"
 										}
 									}
@@ -151,6 +151,10 @@
 			"soruce_system": {
 				"type": "string",
 				"defaultValue": "neon_postgres"
+			},
+			"adf_run_id": {
+				"type": "string",
+				"defaultValue": "a2"
 			}
 		},
 		"variables": {
