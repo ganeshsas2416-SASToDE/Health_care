@@ -184,6 +184,14 @@
 						"landing_timestamp": {
 							"value": "@variables('start_time')",
 							"type": "Expression"
+						},
+						"merge_keys": {
+							"value": "@coalesce(activity('read Table details').output.firstRow.merge_keys,'')",
+							"type": "Expression"
+						},
+						"load_type": {
+							"value": "@activity('read Table details').output.firstRow.load_type",
+							"type": "Expression"
 						}
 					}
 				},
